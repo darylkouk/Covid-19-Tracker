@@ -103,6 +103,7 @@ function App() {
                   {/* Table */}
                   <Table countries={tableData} />
                   <h3>Worldwide New Cases</h3>
+                  <LineGraph />
               </CardContent>
           </Card>
     </div>
