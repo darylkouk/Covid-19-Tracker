@@ -25,18 +25,21 @@ export const sortData = data => {
 }
 
 
-export const buildChartData = (data, casesType) => {
+export const buildChartData = (data, country, casesType) => {
     const chartData = [];
     let lastDataPoint;
-    for(let date in data.cases) {
+
+    const target = country === "worldwide" ? data : data.timeline;
+
+    for(let date in target.cases) {
         if (lastDataPoint) {
             let newDataPoint = {
                 x: date,
-                y: data[casesType][date] - lastDataPoint,
+                y: target[casesType][date] - lastDataPoint,
             }
             chartData.push(newDataPoint);
         }
-        lastDataPoint = data[casesType][date];
+        lastDataPoint = target[casesType][date];
     }
     return chartData;
 }

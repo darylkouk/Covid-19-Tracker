@@ -60,7 +60,6 @@ function App() {
         
         const url = countryCode === "worldwide" ? "https://disease.sh/v3/covid-19/all" : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
 
-
         await fetch(url)
             .then(response => response.json())
             .then(data => {
@@ -73,7 +72,7 @@ function App() {
                 }
                 else {
                     setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-                    setMapZoom(4);
+                    setMapZoom(5);
                 }
             });
     };
@@ -114,9 +113,9 @@ function App() {
                   <h3>Live Cases By Country</h3>
                   {/* Table */}
                   <Table countries={tableData} />
-                  <h3 className="app__graphTitle">Worldwide New {casesType}</h3>
+                  <h3 className="app__graphTitle">{country} new {casesType}</h3>
                   {/* Graph */}
-                  <LineGraph className="app__graph" casesType={casesType} />
+                  <LineGraph className="app__graph" country={country} casesType={casesType} />
               </CardContent>
           </Card>
     </div>
